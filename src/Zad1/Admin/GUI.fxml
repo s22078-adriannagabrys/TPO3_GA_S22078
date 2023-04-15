@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Zad1.Admin.Controller">
+   <children>
+      <VBox layoutX="20.0" layoutY="23.0" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="Topic list:" />
+            <ListView fx:id="topicListView" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+      <HBox layoutX="20.0" layoutY="234.0" prefHeight="121.0" prefWidth="289.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Topic" />
+                  <TextField fx:id="topicField" />
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#eventAddTopic" text="Add" />
+               </children></VBox>
+            <Button fx:id="removeButton" mnemonicParsing="false" onAction="#eventRemoveTopic" text="Remove" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Message" />
+                  <TextField fx:id="messageField" />
+                  <Button fx:id="sendButton" mnemonicParsing="false" onAction="#eventSendMessage" text="Send" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
