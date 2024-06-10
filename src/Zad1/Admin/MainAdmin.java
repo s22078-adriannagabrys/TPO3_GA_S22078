@@ -11,10 +11,14 @@ public class MainAdmin extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI.fxml"));
         Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root, 400, 400);
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         primaryStage.setTitle("Admin");
         primaryStage.setScene(scene);
         ((Controller) fxmlLoader.getController()).clientAdmin = new Client(Integer.parseInt(getParameters().getUnnamed().get(0)));
         primaryStage.show();
+    }
+    public static void main(String[] args) {
+        launch(args);
     }
 }

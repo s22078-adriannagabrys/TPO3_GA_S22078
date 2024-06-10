@@ -3,35 +3,45 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Zad1.Client.Controller">
+<AnchorPane prefHeight="300.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Zad1.Client.Controller">
     <children>
-        <VBox layoutX="20.0" layoutY="23.0" prefHeight="200.0" prefWidth="100.0">
+        <GridPane layoutX="20.0" layoutY="23.0" hgap="20" vgap="20">
+            <columnConstraints>
+                <ColumnConstraints minWidth="200" />
+                <ColumnConstraints minWidth="200" />
+                <ColumnConstraints minWidth="200" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="200" />
+                <RowConstraints minHeight="40" />
+                <RowConstraints minHeight="50" />
+            </rowConstraints>
             <children>
-                <Label text="Topic list:" />
-                <ListView fx:id="topicListView" prefHeight="200.0" prefWidth="200.0" />
-            </children>
-        </VBox>
-        <HBox layoutX="20.0" layoutY="234.0" prefHeight="121.0" prefWidth="289.0">
-            <children>
-                <VBox prefHeight="200.0" prefWidth="100.0">
+                <VBox GridPane.columnIndex="0">
                     <children>
-                        <Button fx:id="subscribeButton" mnemonicParsing="false" onAction="#eventSubscribeTopic" text="Subscribe" />
-                    </children></VBox>
-                <Button fx:id="unsubscribeButton" mnemonicParsing="false" onAction="#eventUnsubscribeTopic" text="Unsubscribe" />
-                <VBox prefHeight="200.0" prefWidth="100.0">
-                    <children>
-                        <Label text="Sent messages" />
-                  <TextArea fx:id="messageArea" prefHeight="200.0" prefWidth="200.0" />
-                        <Button fx:id="sendButton" mnemonicParsing="false" text="Send" />
+                        <Label text="Topic list:" />
+                        <ListView fx:id="topicListView" prefHeight="200.0" prefWidth="200.0" />
                     </children>
                 </VBox>
+                <VBox GridPane.columnIndex="1">
+                    <children>
+                        <Label text="Subscribed topics" />
+                        <ListView fx:id="subscribedListView" prefHeight="200.0" prefWidth="200.0" />
+                    </children>
+                </VBox>
+                <VBox GridPane.columnIndex="2">
+                    <children>
+                        <Label text="Topic messages" />
+                        <TextArea fx:id="messageArea" prefHeight="200.0" prefWidth="200.0" />
+                    </children>
+                </VBox>
+                <HBox GridPane.rowIndex="1" GridPane.columnSpan="3" alignment="CENTER" spacing="20">
+                    <children>
+                        <Button fx:id="subscribeButton" mnemonicParsing="false" onAction="#eventSubscribeTopic" text="Subscribe" />
+                        <Button fx:id="unsubscribeButton" mnemonicParsing="false" onAction="#eventUnsubscribeTopic" text="Unsubscribe" />
+                    </children>
+                </HBox>
             </children>
-        </HBox>
-      <VBox layoutX="145.0" layoutY="23.0" prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <Label text="Subscribed topics" />
-            <ListView fx:id="subscribedListView" prefHeight="200.0" prefWidth="200.0" />
-         </children>
-      </VBox>
+        </GridPane>
     </children>
 </AnchorPane>

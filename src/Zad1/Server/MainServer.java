@@ -31,6 +31,21 @@ public class MainServer {
         }
         serviceConnections();
     }
+    private void sendTopicList(SocketChannel cc) throws IOException {
+        StringBuilder topics = new StringBuilder("TOPICLIST ");
+        for (String topic : addressMap.keySet()) {
+            topics.append(topic).append(",");
+        }
+        // Remove the trailing comma
+        if (topics.length() > 10) {
+            topics.setLength(topics.length() - 1);
+        }
+        topics.append("\n");
+
+        ByteBuffer byteBuffer = Charset.forName("ISO-8859-2").encode(CharBuffer.wrap(topics));
+        cc.write(byteBuffer);
+    }
+
 
     private void serviceConnections() {
         boolean serverIsRunning = true;
@@ -80,7 +95,7 @@ public class MainServer {
                     }
                 }
             }
-        }catch (IOException ex){ //kanał gwałtownie zamknięty
+        }catch (IOException ex){ //channel closed
             channelList.remove(cc);
             for (List<SocketChannel> socketList: addressMap.values()){
                 socketList.remove(cc);
@@ -123,6 +138,8 @@ public class MainServer {
                     sc.write(byteBuffer);
                 }
             }
+        } else if (header.equals("REQUESTTOPICLIST")) {
+        sendTopicList(cc);
         }
     }
 

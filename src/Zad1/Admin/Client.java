@@ -18,37 +18,22 @@ public class Client {
     }
 
     public void addTopic (String topic) throws IOException {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("ADDTOPIC");
-        stringBuilder.append(" ");
-        stringBuilder.append(topic);
-        stringBuilder.append("\n");
-        ByteBuffer byteBuffer = Charset.forName("ISO-8859-2").encode(CharBuffer.wrap(stringBuilder));
-        adminChannel.write(byteBuffer);
+        String message = "ADDTOPIC " + topic + "\n";
+        sendMessageToChannel(message);
     }
 
     public void removeTopic (String topic) throws IOException {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("REMOVETOPIC");
-        stringBuilder.append(" ");
-        stringBuilder.append(topic);
-        stringBuilder.append("\n");
-        ByteBuffer byteBuffer = Charset.forName("ISO-8859-2").encode(CharBuffer.wrap(stringBuilder));
-        adminChannel.write(byteBuffer);
-
+        String message = "REMOVETOPIC " + topic + "\n";
+        sendMessageToChannel(message);
     }
+
     public void sendMessage (String topic, String message) throws IOException {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("SENDMESSAGE");
-        stringBuilder.append(" ");
-        stringBuilder.append(topic);
-        stringBuilder.append(" ");
-        stringBuilder.append(message);
-        stringBuilder.append("\n");
-        ByteBuffer byteBuffer = Charset.forName("ISO-8859-2").encode(CharBuffer.wrap(stringBuilder));
-        adminChannel.write(byteBuffer);
-
+        String fullMessage = "SENDMESSAGE " + topic + " " + message + "\n";
+        sendMessageToChannel(fullMessage);
     }
 
-
+    private void sendMessageToChannel(String message) throws IOException {
+        ByteBuffer byteBuffer = Charset.forName("ISO-8859-2").encode(CharBuffer.wrap(message));
+        adminChannel.write(byteBuffer);
+    }
 }
